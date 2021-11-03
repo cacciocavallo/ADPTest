@@ -1,0 +1,9 @@
+{
+  "name": "test",
+  "author": "Yimo(Yuri) Xiao",
+  "requires": true,
+  "packages": {},
+  "dependencies": {
+    "axios":"^0.24.0"
+  }
+}

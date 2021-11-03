@@ -16,11 +16,6 @@ function callAPI(){
         path: '/api/v1/get-task',
         method: 'GET'
     };
-    const postOptions = {
-        hostname: 'interview.adpeai.com',
-        path: '/api/v1/submit-task',
-        method: 'POST'
-    };
       
     const req = https.request(options, res => {
     console.log(`First call of the "GET" API's statusCode: ${res.statusCode}`)
@@ -63,11 +58,13 @@ function callAPI(){
                     process.stdout.write("result for id "+obj.id+" has something wrong: "+msg);
                 }
                 else{
+                    //submit result
                     axios.post('https://interview.adpeai.com/api/v1/submit-task', {
                             id: obj.id,
                             result: result
                         })
                         .then(resPost => {
+                            //check response code
                             if(resPost.status!=undefined && resPost.status!=''){
                                 process.stdout.write("Response for id"+obj.id+" is: ");
                                 switch(resPost.status.toString()){
@@ -93,7 +90,6 @@ function callAPI(){
             }
         }
         else{
-            valid=false;
             process.stdout.write("cannot process with current data")
             process.stdout.write(d)
         }
@@ -101,8 +97,7 @@ function callAPI(){
     })
     
     req.on('error', error => {
-    console.error(error);
-    valid = false;
+        console.error(error);
     })
     
     req.end();

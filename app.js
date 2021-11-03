@@ -69,7 +69,7 @@ function callAPI(){
                         })
                         .then(resPost => {
                             if(resPost.status!=undefined && resPost.status!=''){
-                                process.stdout.write("Response for id"+obj.id+"is:");
+                                process.stdout.write("Response for id"+obj.id+" is: ");
                                 switch(resPost.status.toString()){
                                     case "200":
                                         process.stdout.write("Success\n");
